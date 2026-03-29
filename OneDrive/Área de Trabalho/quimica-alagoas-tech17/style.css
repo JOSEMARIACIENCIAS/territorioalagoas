@@ -1,11 +1,106 @@
-:root { --green: #00ff41; --bg: #0d0208; --card-bg: #1a1a1a; --feedback-bg: #222; --feedback-success: #e0ffe0; --feedback-error: #ffe0e0; }
 body {
-	background: var(--bg);
-	color: var(--green);
-	font-family: 'Courier New', monospace;
+	background: linear-gradient(135deg, #e6ffe6 0%, #e6f7ff 100%);
+	color: #222;
+	font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
 	text-align: center;
 	margin: 0;
 	min-height: 100vh;
+	transition: background 0.5s;
+}
+
+.welcome-banner {
+	width: 100%;
+	background: linear-gradient(90deg, #00b32a 60%, #007a3d 100%);
+	color: #fff;
+	padding: 18px 0 14px 0;
+	font-size: 1.5em;
+	font-weight: bold;
+	letter-spacing: 1px;
+	box-shadow: 0 2px 12px #0002;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+.banner-logo {
+	border-radius: 50%;
+	background: #fff;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 6px #0001;
+}
+.banner-title {
+	font-family: 'Montserrat', Arial, sans-serif;
+	font-size: 1.1em;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+.ideias-btn {
+	background: #00b32a;
+	color: #fff;
+	font-size: 1.1em;
+	padding: 10px 22px;
+	border: none;
+	border-radius: 7px;
+	cursor: pointer;
+	box-shadow: 0 1px 6px #0002;
+	transition: background 0.2s, transform 0.2s;
+}
+.ideias-btn:hover, .ideias-btn:focus {
+	background: #007a3d;
+	transform: scale(1.05);
+}
+.welcome-container {
+	max-width: 600px;
+	margin: 30px auto;
+	background: #f8fff8;
+	border-radius: 12px;
+	box-shadow: 0 2px 12px #0001;
+	padding: 32px 20px;
+	text-align: center;
+	animation: fadein 1.2s;
+}
+.fade-in {
+	opacity: 0;
+	animation: fadein 1.2s forwards;
+}
+@keyframes fadein {
+	from { opacity: 0; transform: translateY(30px); }
+	to { opacity: 1; transform: none; }
+}
+.enter-btn {
+	display: inline-block;
+	margin-top: 18px;
+	padding: 14px 38px;
+	background: linear-gradient(90deg, #00b32a 60%, #007a3d 100%);
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.25em;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: 0 2px 10px #00b32a33;
+	text-decoration: none;
+	transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.enter-btn:hover, .enter-btn:focus {
+	background: #007a3d;
+	transform: scale(1.07);
+	box-shadow: 0 4px 18px #00b32a55;
+}
+.welcome-footer {
+	margin-top: 32px;
+	color: #555;
+	font-size: 0.98em;
+	text-align: center;
+	padding-bottom: 18px;
+}
+@media (max-width: 600px) {
+	.welcome-banner { font-size: 1.1em; padding: 12px 0; }
+	.banner-logo { width: 36px !important; height: 36px !important; }
+	.welcome-container { padding: 12px 2vw; }
+	.enter-btn { font-size: 1.08em; padding: 12px 18px; }
 }
 header {
 	border-bottom: 2px solid var(--green);

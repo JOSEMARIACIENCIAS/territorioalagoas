@@ -272,6 +272,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boas-vindas: Portal de Investigação Científica</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
     <script>
     // Marca que o usuário visitou a página de boas-vindas
     sessionStorage.setItem('visitouBoasVindas', 'sim');
@@ -291,10 +294,14 @@
     </style>
 </head>
 <body>
-        <div style="text-align:center;margin:18px 0 30px 0;">
-            <button onclick="window.open('ideias.html','_blank')" style="background:#00b32a;color:#fff;font-size:1.1em;padding:10px 22px;border:none;border-radius:7px;cursor:pointer;box-shadow:0 1px 6px #0002;">💡 Ver Ideias de Energia Limpa</button>
-        </div>
-    <div class="welcome-container">
+    <header class="welcome-banner">
+        <img src="imagens/mapa-maceio.png" alt="Logo Alagoas" class="banner-logo" style="width:48px;height:48px;vertical-align:middle;margin-right:10px;">
+        <span class="banner-title">Hackeando a Química: Alagoas Tech</span>
+    </header>
+    <div style="text-align:center;margin:18px 0 30px 0;">
+        <button onclick="window.open('ideias.html','_blank')" class="ideias-btn">💡 Ver Ideias de Energia Limpa</button>
+    </div>
+    <div class="welcome-container fade-in">
         <!-- Mensagem motivacional do professor -->
         <div class="prof-message" style="background:#e6f7ee;border-radius:8px;padding:14px 10px 10px 10px;margin-bottom:18px;box-shadow:0 1px 6px #0001;">
             <b>Mensagem do Professor:</b><br>
@@ -384,6 +391,9 @@ Pelo meu lugar
             <img src="qrcode/qrcode-exemplo.png" alt="QR Code para acessar os desafios do projeto gamificado de Química e Território em Alagoas">
         </div>
         <a class="enter-btn" href="index.html" id="entrar-desafios">Entrar nos Desafios</a>
+                <footer class="welcome-footer">
+                    <span>Desenvolvido por Prof. Zé Maria | <a href="mailto:professor@escola.com">Contato</a></span>
+                </footer>
         <script>
         // Garante que o botão sempre leva para index.html, mesmo se houver cache ou redirecionamento
         document.addEventListener('DOMContentLoaded', function() {
