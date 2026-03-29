@@ -13,6 +13,26 @@
     </script>
 </head>
 <body>
+            <!-- Botão fixo para abrir o roteiro visual -->
+            <button id="openRoteiroBtn" style="position:fixed;bottom:24px;right:24px;z-index:1000;background:#00b32a;color:#fff;border:none;border-radius:50px;padding:16px 22px;font-size:1.1em;box-shadow:0 2px 8px #0002;cursor:pointer;">Roteiro Visual</button>
+
+            <!-- Modal do roteiro visual -->
+            <div id="roteiroModal" style="display:none;position:fixed;z-index:2000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);justify-content:center;align-items:center;">
+                <div style="background:#fff;max-width:420px;width:90vw;padding:32px 20px 20px 20px;border-radius:18px;box-shadow:0 4px 24px #0003;position:relative;">
+                    <button id="closeRoteiroBtn" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.5em;cursor:pointer;color:#00b32a;">&times;</button>
+                    <h2 style="text-align:center;color:#00b32a;margin-bottom:18px;">Roteiro Visual da Atividade</h2>
+                    <ol style="padding-left:18px;font-size:1.08em;">
+                        <li style="margin-bottom:12px;"><b>Ouça a música e leia a letra.</b> <span style="font-size:1.2em;">🎧</span></li>
+                        <li style="margin-bottom:12px;"><b>Analise os elementos culturais e científicos.</b> <span style="font-size:1.2em;">🔎</span></li>
+                        <li style="margin-bottom:12px;"><b>Acesse os desafios pelo QR Code ou botão.</b> <span style="font-size:1.2em;">📱</span></li>
+                        <li style="margin-bottom:12px;"><b>Resolva as missões no site.</b> <span style="font-size:1.2em;">⭐</span></li>
+                        <li style="margin-bottom:12px;"><b>Escolha uma estação/desafio para apresentar.</b> <span style="font-size:1.2em;">🗂️</span><br><span style="font-size:0.97em;">Pesquise sobre o tema: fenômeno, processo ou local relacionado, curiosidades, dados e relação com a cultura/localidade.</span></li>
+                        <li style="margin-bottom:12px;"><b>Prepare uma apresentação em grupo.</b> <span style="font-size:1.2em;">🗣️</span><br><span style="font-size:0.97em;">Explique o contexto, como resolveram, o que aprenderam e como a tecnologia ajudou.</span></li>
+                        <li style="margin-bottom:12px;"><b>Apresente para a turma!</b> <span style="font-size:1.2em;">🎤</span></li>
+                    </ol>
+                    <div style="text-align:center;margin-top:10px;font-size:0.98em;color:#555;">Dica: Use imagens, dados, curiosidades ou até pequenas demonstrações para enriquecer sua apresentação.</div>
+                </div>
+            </div>
     <header>
         <h1>🔓 HACKEANDO O TERRITÓRIO: ALAGOAS TECH</h1>
         <p>Prof. Zé Maria | Escola Estadual Izidro Teixeira | Missões Químicas</p>
@@ -32,7 +52,7 @@
     <div class="container">
         <div class="card" id="station1">
             <h3>🎼 Missão 1: O Mar de Maceió</h3>
-            <img src="imagens/mapa-maceio.png" alt="Mapa de Maceió" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/mapa-maceio.png" alt="Mapa ilustrado da cidade de Maceió, Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto Alagoano:</b> Maceió é famosa por suas praias e pelo Sal-Gema extraído do subsolo. A música "Minha Alagoas" de Eliezer Setton celebra o mar, que é uma mistura homogênea. O Sal-Gema (NaCl) é usado na indústria para fabricar PVC, um polímero essencial para a economia local.</p>
             <p><i>"O mar que banha Alagoas..."</i> - Eliezer Setton</p>
             <p><strong>Desafio:</strong> O Sal-Gema (NaCl) é um composto Orgânico ou Inorgânico?</p>
@@ -43,7 +63,7 @@
 
         <div class="card" id="station2" style="display:none;">
             <h3>🚜 Missão 2: As Usinas (Pilar)</h3>
-            <img src="imagens/pilar.png" alt="Usina de Pilar" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/pilar.png" alt="Imagem da Usina de Pilar, importante para a produção de açúcar e etanol em Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto Alagoano:</b> No caminho entre Maceió e Chã Preta, as usinas de cana-de-açúcar transformam o açúcar em etanol por fermentação. Esse processo é fundamental para a economia do interior de Alagoas e mostra a Química presente no cotidiano.</p>
             <p>O açúcar da cana vira álcool (Etanol) nas usinas.</p>
             <p><strong>Desafio:</strong> A fermentação é um fenômeno Físico ou Químico?</p>
@@ -54,7 +74,7 @@
 
         <div class="card" id="station3" style="display:none;">
             <h3>🏡 Missão 3: Chã Preta (Eco-Cooling)</h3>
-            <img src="imagens/mapa-cha-preta.png" alt="Mapa de Chã Preta" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/mapa-cha-preta.png" alt="Mapa ilustrado da cidade de Chã Preta, Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto Alagoano:</b> A Escola Izidro Teixeira sofre com o calor intenso. O projeto Eco-Cooling usa tinta branca ecológica para aumentar o albedo das salas, refletindo a radiação solar e melhorando o conforto térmico dos alunos.</p>
             <p>Hackeando o calor na Escola Izidro Teixeira.</p>
             <p><strong>Desafio:</strong> Nome do fenômeno de refletir o calor? (Dica: A_____o)</p>
@@ -64,7 +84,7 @@
         </div>
         <div class="card" id="station4" style="display:none;">
             <h3>🚢 Missão 4: Açúcar e Porto de Jaraguá</h3>
-            <img src="imagens/mapa-jaragua.png" alt="Mapa do Porto de Jaraguá" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/mapa-jaragua.png" alt="Mapa ilustrado do Porto de Jaraguá, Maceió, Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto Alagoano:</b> O Porto de Jaraguá, em Maceió, é um dos principais pontos de exportação de açúcar do Brasil. A música regional celebra a importância do açúcar para a economia e cultura de Alagoas.</p>
             <p><i>"O açúcar que vai para o mundo..."</i></p>
             <p><strong>Desafio:</strong> O açúcar é um carboidrato. Qual é a fórmula molecular da sacarose?</p>
@@ -75,7 +95,7 @@
 
         <div class="card" id="station5" style="display:none;">
             <h3>⛰️ Missão 5: Serra Lisa (Chã Preta)</h3>
-            <img src="imagens/serra-lisa.png" alt="Serra Lisa em Chã Preta" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/serra-lisa.png" alt="Vista da Serra Lisa, um dos pontos mais altos de Chã Preta, Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto Alagoano:</b> A Serra Lisa é um dos pontos mais altos de Alagoas, localizada em Chã Preta. O solo da região é rico em minerais, e a erosão é um fenômeno natural importante para a formação do relevo.</p>
             <p><strong>Desafio:</strong> Qual é o principal processo químico responsável pela erosão das rochas na Serra Lisa? (Dica: envolve água e ácidos naturais)</p>
             <input type="text" id="input5" placeholder="Digite sua resposta...">
@@ -85,7 +105,7 @@
 
         <div class="card" id="station6" style="display:none;">
             <h3>🌱 Missão 6: Agricultura em Chã Preta</h3>
-            <img src="imagens/cha-preta-agricultura.png" alt="Agricultura em Chã Preta" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/cha-preta-agricultura.png" alt="Plantação agrícola em Chã Preta, Alagoas, destacando a produção de feijão e milho" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto:</b> Chã Preta é conhecida pela produção agrícola, especialmente de feijão e milho. O solo fértil depende do ciclo do nitrogênio para manter sua produtividade.</p>
             <p><strong>Desafio:</strong> Qual elemento químico é fundamental para o crescimento das plantas e é fixado no solo por bactérias presentes nas raízes do feijão?</p>
             <input type="text" id="input6" placeholder="Digite o elemento...">
@@ -95,7 +115,7 @@
 
         <div class="card" id="station7" style="display:none;">
             <h3>💧 Missão 7: Água e Saúde em Chã Preta</h3>
-            <img src="imagens/cha-preta-aguaesaude.png" alt="Água e Saúde em Chã Preta" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/cha-preta-aguaesaude.png" alt="Abastecimento de água potável em Chã Preta, Alagoas, com destaque para a importância da saúde pública" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto:</b> O abastecimento de água potável é um desafio em muitas cidades do interior. O tratamento da água envolve processos químicos para remover impurezas e garantir a saúde da população.</p>
             <p><strong>Desafio:</strong> Cite um processo químico utilizado no tratamento da água para torná-la potável.</p>
             <input type="text" id="input7" placeholder="Digite o processo...">
@@ -105,7 +125,7 @@
 
         <div class="card" id="station8" style="display:none;">
             <h3>🔥 Missão 8: Energia e Gás de Cozinha</h3>
-            <img src="imagens/gas-cozinha.png" alt="Botijão de gás de cozinha em Chã Preta" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/gas-cozinha.png" alt="Botijão de gás de cozinha (GLP) utilizado em Chã Preta, Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto:</b> O gás de cozinha (GLP) é essencial para o preparo dos alimentos em Chã Preta e em todo o Brasil. O GLP é uma mistura de hidrocarbonetos, principalmente propano e butano.</p>
             <p><strong>Desafio:</strong> Qual é a fórmula molecular do gás propano, um dos principais componentes do GLP?</p>
             <input type="text" id="input8" placeholder="Digite a fórmula...">
@@ -115,7 +135,7 @@
 
         <div class="card" id="station9" style="display:none;">
             <h3>🏫 Missão 9: Escola Estadual Izidro Teixeira</h3>
-            <img src="imagens/escola-izidro-teixeira1.png" alt="Escola Estadual Izidro Teixeira em Chã Preta" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/escola-izidro-teixeira1.png" alt="Fachada da Escola Estadual Izidro Teixeira, referência em projetos de sustentabilidade em Chã Preta, Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto:</b> A Escola Estadual Izidro Teixeira é referência em projetos de sustentabilidade e ciência em Chã Preta. Os alunos já participaram de projetos de reciclagem e reaproveitamento de materiais.</p>
             <p><strong>Desafio:</strong> Cite um material reciclável que pode ser reaproveitado em projetos escolares e explique brevemente seu benefício ambiental.</p>
             <input type="text" id="input9" placeholder="Digite o material e benefício...">
@@ -124,7 +144,7 @@
         </div>
         <div class="card" id="station10" style="display:none;">
             <h3>⚡ Missão 10: Química do Futuro – Energia Limpa em Alagoas</h3>
-            <img src="imagens/energia-limpa-alagoas.png" alt="Energia Limpa em Alagoas" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
+            <img src="imagens/energia-limpa-alagoas.png" alt="Projeto de energia limpa em Alagoas, destacando energia solar, eólica e hidrogênio verde" style="width:100%;max-width:320px;border-radius:8px;margin-bottom:10px;">
             <p><b>Contexto:</b> Alagoas pode ser referência em energia limpa! Projetos de energia solar, eólica e hidrogênio verde já estão mudando o estado. A Química é fundamental para transformar luz do sol, vento e água em energia sustentável.</p>
             <p><strong>Desafio:</strong> Qual fonte de energia limpa você acha que tem mais potencial para Alagoas? Escreva sua opinião e explique como a Química pode ajudar nesse processo!</p>
             <input type="text" id="nomes10" placeholder="Nome(s) do grupo..." style="margin-bottom:7px;display:block;width:100%;max-width:320px;">
@@ -137,10 +157,10 @@
     <div id="final-message" style="display:none; text-align:center; margin-top:30px; background:#e0ffe0; border:2px solid #00ff41; border-radius:10px; padding:20px; font-size:1.2em;">
         <b>🏆 Missão Cumprida!</b><br>
         Você validou as 10 estações.<br>
-        <span style="color:#00b32a;">Mostre esta tela ao professor para ganhar <b>+3 pontos</b> em Química!</span><br>
+        <span style="color:#00b32a;">Mostre esta tela ao professor e lembre-se: os <b>+3 pontos</b> em Química só serão garantidos após a apresentação do seu trabalho sobre uma das estações/desafios!</span><br>
         <div style="margin-top:15px;">
             <b>Professor:</b> escaneie o QR Code ou registre o nome do aluno.<br>
-            <img src="qrcode/qrcode-exemplo.png" alt="QR Code para validação" style="width:120px;margin-top:10px;">
+            <img src="qrcode/qrcode-exemplo.png" alt="QR Code para validação da conclusão dos desafios do projeto gamificado de Química e Território em Alagoas" style="width:120px;margin-top:10px;">
         </div>
         <div style="margin-top:10px;font-size:0.95em;">Parabéns! Você é protagonista da Educação 5.0 na Escola Estadual Izidro Teixeira.</div>
     </div>

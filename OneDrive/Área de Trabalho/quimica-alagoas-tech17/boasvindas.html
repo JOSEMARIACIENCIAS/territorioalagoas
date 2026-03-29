@@ -1,3 +1,23 @@
+                                                                        <!-- Botão fixo para abrir o roteiro visual -->
+                                                                        <button id="openRoteiroBtn" style="position:fixed;bottom:24px;right:24px;z-index:1000;background:#00b32a;color:#fff;border:none;border-radius:50px;padding:16px 22px;font-size:1.1em;box-shadow:0 2px 8px #0002;cursor:pointer;">Roteiro Visual</button>
+
+                                                                        <!-- Modal do roteiro visual -->
+                                                                        <div id="roteiroModal" style="display:none;position:fixed;z-index:2000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);justify-content:center;align-items:center;">
+                                                                            <div style="background:#fff;max-width:420px;width:90vw;padding:32px 20px 20px 20px;border-radius:18px;box-shadow:0 4px 24px #0003;position:relative;">
+                                                                                <button id="closeRoteiroBtn" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.5em;cursor:pointer;color:#00b32a;">&times;</button>
+                                                                                <h2 style="text-align:center;color:#00b32a;margin-bottom:18px;">Roteiro Visual da Atividade</h2>
+                                                                                <ol style="padding-left:18px;font-size:1.08em;">
+                                                                                    <li style="margin-bottom:12px;"><b>Ouça a música e leia a letra.</b> <span style="font-size:1.2em;">🎧</span></li>
+                                                                                    <li style="margin-bottom:12px;"><b>Analise os elementos culturais e científicos.</b> <span style="font-size:1.2em;">🔎</span></li>
+                                                                                    <li style="margin-bottom:12px;"><b>Acesse os desafios pelo QR Code ou botão.</b> <span style="font-size:1.2em;">📱</span></li>
+                                                                                    <li style="margin-bottom:12px;"><b>Resolva as missões no site.</b> <span style="font-size:1.2em;">⭐</span></li>
+                                                                                    <li style="margin-bottom:12px;"><b>Escolha uma estação/desafio para apresentar.</b> <span style="font-size:1.2em;">🗂️</span><br><span style="font-size:0.97em;">Pesquise sobre o tema: fenômeno, processo ou local relacionado, curiosidades, dados e relação com a cultura/localidade.</span></li>
+                                                                                    <li style="margin-bottom:12px;"><b>Prepare uma apresentação em grupo.</b> <span style="font-size:1.2em;">🗣️</span><br><span style="font-size:0.97em;">Explique o contexto, como resolveram, o que aprenderam e como a tecnologia ajudou.</span></li>
+                                                                                    <li style="margin-bottom:12px;"><b>Apresente para a turma!</b> <span style="font-size:1.2em;">🎤</span></li>
+                                                                                </ol>
+                                                                                <div style="text-align:center;margin-top:10px;font-size:0.98em;color:#555;">Dica: Use imagens, dados, curiosidades ou até pequenas demonstrações para enriquecer sua apresentação.</div>
+                                                                            </div>
+                                                                        </div>
                                                             <!-- Mural de Frases dos Alunos -->
                                                             <div class="frases-wall" style="margin-bottom:22px;">
                                                                 <b>Mural de Inspiração: Frases dos Alunos</b>
@@ -286,10 +306,10 @@
         <div class="territory-gallery" style="margin-bottom:22px;">
             <b>Conheça nosso território:</b><br>
             <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px;">
-                <img src="imagens/mapa-maceio.png" alt="Maceió" title="Maceió" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
-                <img src="imagens/mapa-cha-preta.png" alt="Chã Preta" title="Chã Preta" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
-                <img src="imagens/mapa-jaragua.png" alt="Porto de Jaraguá" title="Porto de Jaraguá" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
-                <img src="imagens/serra-lisa.png" alt="Serra Lisa" title="Serra Lisa" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/mapa-maceio.png" alt="Mapa ilustrado da cidade de Maceió, Alagoas" title="Maceió" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/mapa-cha-preta.png" alt="Mapa ilustrado da cidade de Chã Preta, Alagoas" title="Chã Preta" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/mapa-jaragua.png" alt="Mapa ilustrado do Porto de Jaraguá, Maceió, Alagoas" title="Porto de Jaraguá" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/serra-lisa.png" alt="Vista da Serra Lisa, um dos pontos mais altos de Chã Preta, Alagoas" title="Serra Lisa" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
             </div>
         </div>
         <div class="welcome-title">Bem-vindo(a) à Jornada Científica!</div>
@@ -361,7 +381,7 @@ Pelo meu lugar
         </div>
         <div class="qrcode-section">
             <div style="margin-bottom:8px;">Acesse os desafios escaneando o QR Code:</div>
-            <img src="qrcode/qrcode-exemplo.png" alt="QR Code para os desafios">
+            <img src="qrcode/qrcode-exemplo.png" alt="QR Code para acessar os desafios do projeto gamificado de Química e Território em Alagoas">
         </div>
         <a class="enter-btn" href="index.html" id="entrar-desafios">Entrar nos Desafios</a>
         <script>
