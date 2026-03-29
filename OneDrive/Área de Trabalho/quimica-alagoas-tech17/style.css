@@ -1,0 +1,98 @@
+:root { --green: #00ff41; --bg: #0d0208; --card-bg: #1a1a1a; --feedback-bg: #222; --feedback-success: #e0ffe0; --feedback-error: #ffe0e0; }
+body {
+	background: var(--bg);
+	color: var(--green);
+	font-family: 'Courier New', monospace;
+	text-align: center;
+	margin: 0;
+	min-height: 100vh;
+}
+header {
+	border-bottom: 2px solid var(--green);
+	padding: 20px 10px;
+	text-shadow: 0 0 10px var(--green);
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center;
+	margin-bottom: 30px;
+}
+.card {
+	background: var(--card-bg);
+	border: 1px solid var(--green);
+	margin: 0 auto;
+	padding: 20px 10px;
+	width: 95%;
+	max-width: 500px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0,255,65,0.2);
+	text-align: left;
+}
+@media (max-width: 600px) {
+	.card { padding: 12px 2vw; font-size: 1em; }
+	header { font-size: 1em; }
+}
+input {
+	background: black;
+	color: var(--green);
+	border: 1px solid var(--green);
+	padding: 10px;
+	width: 90%;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	font-size: 1em;
+}
+button {
+	background: var(--green);
+	color: black;
+	border: none;
+	padding: 10px 20px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: 1em;
+	transition: background 0.2s;
+}
+button:hover, button:focus {
+	background: #00b32a;
+	outline: 2px solid #fff;
+}
+.status {
+	margin-top: 10px;
+	font-weight: bold;
+	min-height: 32px;
+	font-size: 1em;
+}
+.feedback {
+	display: block;
+	background: var(--feedback-bg);
+	color: #fff;
+	border-radius: 5px;
+	padding: 8px 10px;
+	margin-top: 8px;
+	font-size: 0.98em;
+}
+#progress-bar {
+	margin: 0 auto 20px auto;
+	display: block;
+	width: 95vw;
+	max-width: 500px;
+	height: 22px;
+	accent-color: var(--green);
+	background: #222;
+	border-radius: 8px;
+	box-shadow: 0 0 6px #00ff4160;
+}
+#final-message {
+	background: var(--feedback-success);
+	color: #222;
+	border: 2px solid var(--green);
+	border-radius: 10px;
+	padding: 20px;
+	font-size: 1.2em;
+	margin: 0 auto 30px auto;
+	max-width: 500px;
+	box-shadow: 0 0 10px #00ff4140;
+}

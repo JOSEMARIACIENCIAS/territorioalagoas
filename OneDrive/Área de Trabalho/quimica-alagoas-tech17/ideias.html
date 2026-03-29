@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideias para Energia Limpa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h2>💡 Ideias para Energia Limpa em Alagoas</h2>
+        <p>Veja as sugestões enviadas pelos alunos na Missão 10!</p>
+    </header>
+    <div class="container" style="max-width:600px;margin:auto;">
+        <div style="text-align:right;margin-bottom:10px;">
+            <button id="btn-prof" style="background:#007a3d;color:#fff;border:none;border-radius:5px;padding:6px 14px;cursor:pointer;">🔒 Área do Professor</button>
+        </div>
+        <ul id="lista-ideias" style="list-style:disc inside;padding:0 0 0 18px;"></ul>
+        <div id="sem-ideias" style="color:#888;text-align:center;margin-top:30px;display:none;">Nenhuma ideia registrada ainda.</div>
+    </div>
+    <script>
+    let podeExcluir = false;
+    document.getElementById('btn-prof').onclick = function() {
+        let senha = prompt('Digite a senha do professor para gerenciar as ideias:');
+        if (senha === 'Jose123@') {
+            podeExcluir = true;
+            carregarIdeias();
+            alert('Modo professor ativado! Agora é possível excluir ideias.');
+        } else {
+            alert('Senha incorreta.');
+        }
+    };
+    function carregarIdeias() {
+        let ideias = JSON.parse(localStorage.getItem('ideiasEnergiaLimpa') || '[]');
+        let ul = document.getElementById('lista-ideias');
+        let vazio = document.getElementById('sem-ideias');
+        ul.innerHTML = '';
+        if (ideias.length === 0) {
+            vazio.style.display = 'block';
+        } else {
+            vazio.style.display = 'none';
+            ideias.forEach(function(item, idx) {
+                let li = document.createElement('li');
+                let nomes = item.nomes ? ` — <b>${item.nomes}</b>` : '';
+                li.innerHTML = `<span>${item.ideia || item}</span>${nomes}`;
+                if (podeExcluir) {
+                    let btn = document.createElement('button');
+                    btn.textContent = 'Excluir';
+                    btn.style = 'margin-left:10px;background:#c00;color:#fff;border:none;border-radius:4px;padding:2px 10px;cursor:pointer;font-size:0.95em;';
+                    btn.onclick = function() {
+                        if (confirm('Tem certeza que deseja excluir esta ideia?')) {
+                            ideias.splice(idx,1);
+                            localStorage.setItem('ideiasEnergiaLimpa', JSON.stringify(ideias));
+                            carregarIdeias();
+                        }
+                    };
+                    li.appendChild(btn);
+                }
+                ul.appendChild(li);
+            });
+        }
+    }
+    carregarIdeias();
+    </script>
+</body>
+</html>
