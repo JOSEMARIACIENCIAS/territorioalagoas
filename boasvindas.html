@@ -1,0 +1,387 @@
+                                                            <!-- Mural de Frases dos Alunos -->
+                                                            <div class="frases-wall" style="margin-bottom:22px;">
+                                                                <b>Mural de Inspiração: Frases dos Alunos</b>
+                                                                <form id="form-frase" style="margin:14px 0 10px 0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+                                                                    <input id="nome-frase" type="text" maxlength="18" placeholder="Seu nome" style="padding:7px 10px;border-radius:5px;border:1px solid #bbb;min-width:110px;">
+                                                                    <input id="texto-frase" type="text" maxlength="80" placeholder="Digite sua frase motivacional ou curiosidade..." style="padding:7px 10px;border-radius:5px;border:1px solid #bbb;min-width:220px;">
+                                                                    <button type="submit" style="background:#00b32a;color:#fff;border:none;border-radius:5px;padding:7px 14px;font-size:1em;cursor:pointer;">Enviar</button>
+                                                                </form>
+                                                                <div style="text-align:right;margin-bottom:6px;">
+                                                                    <button id="btn-prof-frase" style="background:#007a3d;color:#fff;border:none;border-radius:5px;padding:5px 12px;cursor:pointer;font-size:0.98em;">🔒 Área do Professor</button>
+                                                                </div>
+                                                                <ul id="lista-frases" style="list-style:disc inside;padding:0 0 0 18px;max-width:420px;margin:auto;"></ul>
+                                                                <div id="sem-frases" style="color:#888;text-align:center;margin-top:10px;display:none;">Nenhuma frase enviada ainda.</div>
+                                                            </div>
+                                                            <script>
+                                                            let podeExcluirFrase = false;
+                                                            document.getElementById('btn-prof-frase').onclick = function() {
+                                                                let senha = prompt('Digite a senha do professor para gerenciar as frases:');
+                                                                if (senha === 'Jose123@') {
+                                                                    podeExcluirFrase = true;
+                                                                    carregarFrases();
+                                                                    alert('Modo professor ativado! Agora é possível excluir frases.');
+                                                                } else {
+                                                                    alert('Senha incorreta.');
+                                                                }
+                                                            };
+                                                            function carregarFrases() {
+                                                                let frases = JSON.parse(localStorage.getItem('muralFrasesAlunos') || '[]');
+                                                                let ul = document.getElementById('lista-frases');
+                                                                let vazio = document.getElementById('sem-frases');
+                                                                ul.innerHTML = '';
+                                                                if (frases.length === 0) {
+                                                                    vazio.style.display = 'block';
+                                                                } else {
+                                                                    vazio.style.display = 'none';
+                                                                    // Mostra as últimas 5 frases
+                                                                    frases.slice(-5).reverse().forEach(function(f, idx, arr) {
+                                                                        let realIdx = frases.length - 1 - idx;
+                                                                        let li = document.createElement('li');
+                                                                        li.textContent = `"${f.texto}" — ${f.nome}`;
+                                                                        if (podeExcluirFrase) {
+                                                                            let btn = document.createElement('button');
+                                                                            btn.textContent = 'Excluir';
+                                                                            btn.style = 'margin-left:10px;background:#c00;color:#fff;border:none;border-radius:4px;padding:2px 10px;cursor:pointer;font-size:0.95em;';
+                                                                            btn.onclick = function() {
+                                                                                if (confirm('Tem certeza que deseja excluir esta frase?')) {
+                                                                                    frases.splice(realIdx,1);
+                                                                                    localStorage.setItem('muralFrasesAlunos', JSON.stringify(frases));
+                                                                                    carregarFrases();
+                                                                                }
+                                                                            };
+                                                                            li.appendChild(btn);
+                                                                        }
+                                                                        ul.appendChild(li);
+                                                                    });
+                                                                }
+                                                            }
+                                                            document.getElementById('form-frase').onsubmit = function(e) {
+                                                                e.preventDefault();
+                                                                let nome = document.getElementById('nome-frase').value.trim() || 'Anônimo';
+                                                                let texto = document.getElementById('texto-frase').value.trim();
+                                                                if (texto.length < 5) return;
+                                                                let frases = JSON.parse(localStorage.getItem('muralFrasesAlunos') || '[]');
+                                                                frases.push({nome, texto});
+                                                                localStorage.setItem('muralFrasesAlunos', JSON.stringify(frases));
+                                                                document.getElementById('texto-frase').value = '';
+                                                                carregarFrases();
+                                                            };
+                                                            carregarFrases();
+                                                            </script>
+                                                    <!-- Materiais de apoio -->
+                                                    <div class="support-materials" style="margin-bottom:22px;">
+                                                        <b>Materiais de Apoio:</b>
+                                                        <ul style="margin:8px 0 0 0;padding-left:18px;text-align:left;max-width:420px;margin:auto;">
+                                                            <li><a href="https://www.todamateria.com.br/quimica/ target="_blank" style="color:#007a3d;">Site: Resumos de Química (Toda Matéria)</a></li>
+                                                            <li><a href="https://www.youtube.com/watch?v=AS6bALRXO48" target="_blank" style="color:#007a3d;">Vídeo: Química e o cotidiano alagoano</a></li>
+                                                            <li><a href="https://pt.wikipedia.org/wiki/Braskem" target="_blank" style="color:#007a3d;">PDF: Guia de Química e Alagoas</a></li>
+                                                        </ul>
+                                                    </div>
+                                            <!-- Barra de acessibilidade -->
+                                            <div id="access-bar" style="position:fixed;top:18px;right:18px;z-index:1200;display:flex;gap:8px;">
+                                                <button id="inc-font" title="Aumentar fonte" style="background:#00b32a;color:#fff;border:none;border-radius:5px;padding:7px 10px;font-size:1.1em;cursor:pointer;">A+</button>
+                                                <button id="toggle-contrast" title="Alto contraste" style="background:#222;color:#ffd700;border:none;border-radius:5px;padding:7px 10px;font-size:1.1em;cursor:pointer;">☀️</button>
+                                                <button id="read-aloud" title="Leitura em voz alta" style="background:#007a3d;color:#fff;border:none;border-radius:5px;padding:7px 10px;font-size:1.1em;cursor:pointer;">🔊</button>
+                                            </div>
+                                            <script>
+                                            // Aumentar fonte
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                var incFont = document.getElementById('inc-font');
+                                                var root = document.documentElement;
+                                                var fontSize = 16;
+                                                if(incFont) {
+                                                    incFont.onclick = function() {
+                                                        fontSize = Math.min(fontSize + 2, 28);
+                                                        root.style.fontSize = fontSize + 'px';
+                                                    };
+                                                }
+                                                // Contraste
+                                                var contrastBtn = document.getElementById('toggle-contrast');
+                                                var contrastOn = false;
+                                                if(contrastBtn) {
+                                                    contrastBtn.onclick = function() {
+                                                        contrastOn = !contrastOn;
+                                                        if(contrastOn) {
+                                                            document.body.style.background = '#111';
+                                                            document.body.style.color = '#fff';
+                                                            root.style.setProperty('--contrast-bg', '#111');
+                                                            root.style.setProperty('--contrast-txt', '#fff');
+                                                        } else {
+                                                            document.body.style.background = '';
+                                                            document.body.style.color = '';
+                                                            root.style.setProperty('--contrast-bg', '');
+                                                            root.style.setProperty('--contrast-txt', '');
+                                                        }
+                                                    };
+                                                }
+                                                // Leitura em voz alta
+                                                var readBtn = document.getElementById('read-aloud');
+                                                if(readBtn) {
+                                                    readBtn.onclick = function() {
+                                                        var text = document.querySelector('.welcome-container').innerText;
+                                                        if(window.speechSynthesis) {
+                                                            var utter = new SpeechSynthesisUtterance(text);
+                                                            utter.lang = 'pt-BR';
+                                                            window.speechSynthesis.speak(utter);
+                                                        } else {
+                                                            alert('Leitura em voz alta não suportada neste navegador.');
+                                                        }
+                                                    };
+                                                }
+                                            });
+                                            </script>
+                                        <!-- Destaque para prêmio/nota extra -->
+                                        <div class="bonus-highlight" style="background:linear-gradient(90deg,#fffbe6,#e6ffe6);border:2px solid #ffd700;border-radius:10px;padding:12px 10px;margin-bottom:22px;box-shadow:0 1px 8px #ffd70044;text-align:center;">
+                                            <span style="font-size:1.15em;font-weight:bold;color:#b8860b;">🏅 Prêmio Especial:</span><br>
+                                            <span style="font-size:1.05em;color:#007a3d;">Conclua todas as missões e ganhe <b>+3 pontos</b> na sua nota!</span>
+                                        </div>
+                                <!-- Botão de dúvidas com FAQ/contato -->
+                                <button id="faq-btn" style="position:fixed;bottom:24px;right:24px;z-index:1000;background:#00b32a;color:#fff;border:none;border-radius:50%;width:54px;height:54px;font-size:2em;box-shadow:0 2px 8px #0002;cursor:pointer;" title="Dúvidas?">?</button>
+                                <div id="faq-modal" style="display:none;position:fixed;bottom:90px;right:24px;z-index:1100;background:#fff;border-radius:10px;box-shadow:0 2px 16px #0003;padding:22px 18px 16px 18px;max-width:320px;width:90vw;">
+                                    <b>Dúvidas Frequentes</b>
+                                    <ul style="font-size:0.98em;margin:10px 0 8px 0;padding-left:18px;text-align:left;">
+                                        <li><b>Como acesso os desafios?</b> Clique em "Entrar nos Desafios" ou escaneie o QR Code.</li>
+                                        <li><b>Posso tentar mais de uma vez?</b> Sim! Você pode tentar até acertar cada missão.</li>
+                                        <li><b>Como ganho a nota bônus?</b> Complete todas as missões e mostre ao professor.</li>
+                                    </ul>
+                                    <div style="margin-top:8px;font-size:0.97em;">Contato do professor: <a href="mailto:professor@escola.com" style="color:#007a3d;">professor@escola.com</a></div>
+                                    <button id="close-faq" style="margin-top:10px;background:#00b32a;color:#fff;border:none;border-radius:5px;padding:5px 18px;cursor:pointer;">Fechar</button>
+                                </div>
+                                <script>
+                                // FAQ pop-up logic
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var faqBtn = document.getElementById('faq-btn');
+                                    var faqModal = document.getElementById('faq-modal');
+                                    var closeFaq = document.getElementById('close-faq');
+                                    if(faqBtn && faqModal && closeFaq) {
+                                        faqBtn.onclick = function() { faqModal.style.display = 'block'; };
+                                        closeFaq.onclick = function() { faqModal.style.display = 'none'; };
+                                        window.onclick = function(e) {
+                                            if(e.target === faqModal) faqModal.style.display = 'none';
+                                        };
+                                    }
+                                });
+                                </script>
+                <!-- Passo a passo visual -->
+                <div class="step-by-step" style="margin-bottom:22px;">
+                    <b>Como participar?</b>
+                    <ol style="text-align:left;max-width:420px;margin:10px auto 0 auto;padding-left:18px;">
+                        <li style="margin-bottom:7px;"><span style="font-size:1.2em;">📖</span> Leia a explicação e ouça a música.</li>
+                        <li style="margin-bottom:7px;"><span style="font-size:1.2em;">📱</span> Escaneie o QR Code ou clique em "Entrar nos Desafios".</li>
+                        <li style="margin-bottom:7px;"><span style="font-size:1.2em;">🧪</span> Resolva as missões de Química e território.</li>
+                        <li style="margin-bottom:7px;"><span style="font-size:1.2em;">🏆</span> Mostre seu resultado ao professor e conquiste sua nota bônus!</li>
+                    </ol>
+                </div>
+        <!-- Depoimentos de alunos -->
+        <div class="student-testimonials" style="margin-bottom:22px;">
+            <b>Quem já participou diz:</b>
+            <div id="testimonials-list" style="display:flex;flex-direction:column;align-items:center;margin-top:8px;gap:7px;">
+                <span style="background:#f0fff0;border-radius:6px;padding:7px 12px;font-style:italic;max-width:350px;">“Aprendi muito sobre minha cidade e a Química ficou mais divertida!” <span style="color:#00b32a;font-size:0.95em;">– Ana, 8º ano</span></span>
+                <span style="background:#f0fff0;border-radius:6px;padding:7px 12px;font-style:italic;max-width:350px;">“Gostei dos desafios e da música, foi diferente de tudo!” <span style="color:#00b32a;font-size:0.95em;">– Lucas, 9º ano</span></span>
+                <span style="background:#f0fff0;border-radius:6px;padding:7px 12px;font-style:italic;max-width:350px;">“O portal me ajudou a entender melhor a matéria.” <span style="color:#00b32a;font-size:0.95em;">– Maria, 8º ano</span></span>
+            </div>
+        </div>
+
+        <!-- Espaço para comentários de alunos e professores -->
+        <div class="comments-section" style="margin:32px auto 22px auto;max-width:480px;background:#f8fff8;border-radius:10px;box-shadow:0 1px 8px #0001;padding:18px 12px;">
+            <b>Deixe seu comentário:</b>
+            <form id="comment-form" style="margin-top:10px;display:flex;flex-direction:column;gap:7px;">
+                <input type="text" id="comment-name" placeholder="Seu nome (opcional)" maxlength="32" style="padding:7px 8px;border-radius:5px;border:1px solid #b2dfb2;">
+                <textarea id="comment-text" placeholder="Escreva seu comentário aqui..." required maxlength="240" style="padding:7px 8px;border-radius:5px;border:1px solid #b2dfb2;min-height:48px;"></textarea>
+                <button type="submit" style="background:#00b32a;color:#fff;border:none;border-radius:5px;padding:7px 0;font-size:1.05em;cursor:pointer;">Enviar comentário</button>
+            </form>
+        </div>
+        <script>
+        // Comentários locais (armazenados no localStorage) exibidos em 'Quem já participou diz:'
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('comment-form');
+            const nameInput = document.getElementById('comment-name');
+            const textInput = document.getElementById('comment-text');
+            const testimonials = document.getElementById('testimonials-list');
+            // Carregar comentários salvos
+            function loadComments() {
+                // Mantém os exemplos fixos
+                testimonials.innerHTML = '';
+                const exemplos = [
+                    {name:'Ana, 8º ano', text:'Aprendi muito sobre minha cidade e a Química ficou mais divertida!'},
+                    {name:'Lucas, 9º ano', text:'Gostei dos desafios e da música, foi diferente de tudo!'},
+                    {name:'Maria, 8º ano', text:'O portal me ajudou a entender melhor a matéria.'}
+                ];
+                exemplos.forEach(c => {
+                    const span = document.createElement('span');
+                    span.style.background = '#f0fff0';
+                    span.style.borderRadius = '6px';
+                    span.style.padding = '7px 12px';
+                    span.style.fontStyle = 'italic';
+                    span.style.maxWidth = '350px';
+                    span.innerHTML = `“${c.text}” <span style='color:#00b32a;font-size:0.95em;'>– ${c.name}</span>`;
+                    testimonials.appendChild(span);
+                });
+                let comments = [];
+                try { comments = JSON.parse(localStorage.getItem('portal_comments')||'[]'); } catch(e){}
+                comments.slice(-10).forEach(c => {
+                    const span = document.createElement('span');
+                    span.style.background = '#e6f7ee';
+                    span.style.borderRadius = '6px';
+                    span.style.padding = '7px 12px';
+                    span.style.maxWidth = '350px';
+                    span.innerHTML = `“${c.text}” <span style='color:#007a3d;font-size:0.95em;'>– ${c.name?c.name:'Anônimo'}</span>`;
+                    testimonials.appendChild(span);
+                });
+            }
+            loadComments();
+            // Enviar novo comentário
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                const name = nameInput.value.trim().slice(0,32);
+                const text = textInput.value.trim().slice(0,240);
+                if(!text) return;
+                let comments = [];
+                try { comments = JSON.parse(localStorage.getItem('portal_comments')||'[]'); } catch(e){}
+                comments.push({name,text});
+                localStorage.setItem('portal_comments', JSON.stringify(comments));
+                textInput.value = '';
+                loadComments();
+            };
+        });
+        </script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boas-vindas: Portal de Investigação Científica</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    // Marca que o usuário visitou a página de boas-vindas
+    sessionStorage.setItem('visitouBoasVindas', 'sim');
+    </script>
+    <style>
+        .welcome-container { max-width: 600px; margin: 30px auto; background: #f8fff8; border-radius: 12px; box-shadow: 0 2px 12px #0001; padding: 32px 20px; text-align: center; }
+        .welcome-title { font-size: 2em; color: #007a3d; margin-bottom: 10px; }
+        .welcome-sub { font-size: 1.1em; color: #333; margin-bottom: 18px; }
+        .music-title { font-weight: bold; margin-top: 24px; color: #005a2a; }
+        .music-lyrics { white-space: pre-line; background: #e6f7ee; border-radius: 8px; padding: 16px; margin: 12px 0; font-size: 1.05em; color: #222; }
+        .audio-player { margin: 18px 0; }
+        .qrcode-section { margin: 28px 0 10px 0; }
+        .qrcode-section img { width: 140px; border-radius: 8px; border: 2px solid #00b32a; background: #fff; }
+        .enter-btn { display: inline-block; margin-top: 18px; padding: 10px 28px; background: #00b32a; color: #fff; border: none; border-radius: 6px; font-size: 1.1em; cursor: pointer; transition: background 0.2s; text-decoration: none; }
+        .enter-btn:hover { background: #007a3d; }
+        @media (max-width: 600px) { .welcome-container { padding: 12px 2vw; } }
+    </style>
+</head>
+<body>
+        <div style="text-align:center;margin:18px 0 30px 0;">
+            <button onclick="window.open('ideias.html','_blank')" style="background:#00b32a;color:#fff;font-size:1.1em;padding:10px 22px;border:none;border-radius:7px;cursor:pointer;box-shadow:0 1px 6px #0002;">💡 Ver Ideias de Energia Limpa</button>
+        </div>
+    <div class="welcome-container">
+        <!-- Mensagem motivacional do professor -->
+        <div class="prof-message" style="background:#e6f7ee;border-radius:8px;padding:14px 10px 10px 10px;margin-bottom:18px;box-shadow:0 1px 6px #0001;">
+            <b>Mensagem do Professor:</b><br>
+            <span id="prof-text">Bem-vindo(a)! Prepare-se para uma jornada de descobertas. Lembre-se: a curiosidade é o combustível da ciência. Dê o seu melhor e aproveite cada desafio!</span>
+            <!-- Se quiser, adicione um vídeo motivacional abaixo -->
+            <!-- <div style="margin-top:10px;"><video width="100%" controls><source src="video/mensagem-professor.mp4" type="video/mp4">Seu navegador não suporta vídeo.</video></div> -->
+        </div>
+        <!-- Galeria de imagens do território/localidade -->
+        <div class="territory-gallery" style="margin-bottom:22px;">
+            <b>Conheça nosso território:</b><br>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px;">
+                <img src="imagens/mapa-maceio.png" alt="Maceió" title="Maceió" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/mapa-cha-preta.png" alt="Chã Preta" title="Chã Preta" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/mapa-jaragua.png" alt="Porto de Jaraguá" title="Porto de Jaraguá" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+                <img src="imagens/serra-lisa.png" alt="Serra Lisa" title="Serra Lisa" style="width:90px;border-radius:6px;border:1.5px solid #00b32a;background:#fff;">
+            </div>
+        </div>
+        <div class="welcome-title">Bem-vindo(a) à Jornada Científica!</div>
+        <div class="welcome-sub">
+            Nesta atividade, você vai explorar a Química e o território de Alagoas de forma interativa e divertida.<br>
+            Complete os desafios, aprenda com a música e conquiste <b>pontos extras</b> ao final!<br><br>
+            <b>Como funciona?</b><br>
+            1. Leia a explicação e ouça a música abaixo.<br>
+            2. Escaneie o QR Code ou clique no botão para acessar os desafios.<br>
+            3. Resolva as missões e mostre seu resultado ao professor para ganhar sua nota bônus!
+        </div>
+        <div class="music-title">🎵 Não Há Quem Não Morra de Amores Pelo Meu Lugar</div>
+        <div class="music-lyrics">
+Eu sou da terra onde há lagoas
+Da terra onde há marechais
+De tantos risos de tantas loas
+Tantas ilhas tantas croas
+À sombra dos coqueirais
+
+Ah! Calabares de Holanda
+Mares de uma banda
+E o Velho Chico ao sul
+Esse Graciliano
+Esse Jorge de Lima
+Essa Nêga Fulô
+Ah! Marechal Floriano
+De ferro e de flores
+Não há quem não morra de amores
+Pelo meu lugar
+
+Ah! Mais que um solo de cana
+Essa terra tem gana
+De fumo e algodão
+Djavan, Jararaca
+Hermeto, Paurílio
+Maestro Fon-fon
+Ah! É Zumbi dos Palmares
+União de cores
+Não há quem não morra de amores
+Pelo meu lugar
+
+Ah! Cabanada no norte
+Um bispo sem sorte
+Os Caetés
+Teotônio Vilela
+Pontes de Miranda
+Aurèlio de A a Z
+Ah! Mesa rica de renda
+E de tantos sabores
+Não há quem não morra de amores
+Pelo meu lugar
+
+Ah! Brincadeira é chegança
+E o guerreiro que dança
+Faz tremer o chão
+Zé Maria Tenório
+Entra! Pedro Teixeira
+Theo Brandão
+Ah! Dos Prazeres Senhora
+Abençoe os senhores
+Não há quem não morra de amores
+Pelo meu lugar
+        </div>
+        <div class="audio-player">
+            <audio controls>
+                <source src="audio/audiominha-alagoas.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+        <div class="qrcode-section">
+            <div style="margin-bottom:8px;">Acesse os desafios escaneando o QR Code:</div>
+            <img src="qrcode/qrcode-exemplo.png" alt="QR Code para os desafios">
+        </div>
+        <a class="enter-btn" href="index.html" id="entrar-desafios">Entrar nos Desafios</a>
+        <script>
+        // Garante que o botão sempre leva para index.html, mesmo se houver cache ou redirecionamento
+        document.addEventListener('DOMContentLoaded', function() {
+            var btn = document.getElementById('entrar-desafios');
+            if(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+        </script>
+            <script>
+            // Redireciona automaticamente para boasvindas.html se o usuário acessar index.html diretamente
+            if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+                window.location.replace("boasvindas.html");
+            }
+            </script>
+    </div>
+</body>
+</html>
