@@ -1,4 +1,4 @@
-// Modal do roteiro visual para boasvindas.html
+// Modal do roteiro visual (index.html e boasvindas.html)
 document.addEventListener('DOMContentLoaded', function() {
     var openBtn = document.getElementById('openRoteiroBtn');
     var modal = document.getElementById('roteiroModal');
@@ -16,26 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.style.display = 'none';
             }
         });
-    }
-});
-// Modal do roteiro visual
-document.addEventListener('DOMContentLoaded', function() {
-    var openBtn = document.getElementById('openRoteiroBtn');
-    var modal = document.getElementById('roteiroModal');
-    var closeBtn = document.getElementById('closeRoteiroBtn');
-    if (openBtn && modal && closeBtn) {
-        openBtn.addEventListener('click', function() {
-            modal.style.display = 'flex';
-        });
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        // Fechar ao clicar fora do modal
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
+    } else {
+        console.warn('Roteiro Visual: Elementos não encontrados:', {openBtn, modal, closeBtn});
     }
 });
 // Função para normalizar resposta (remover acentos, espaços extras, minúsculas)
